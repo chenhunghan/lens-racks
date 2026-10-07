@@ -20,6 +20,5 @@ Lens serves `react`, `mobx`, `@k8slens/*` and `@lensapp/*` to this extension fro
 
 ## Decisions for this extension
 
-- **No Ask AI.** The user decided (2026-10-07) that Lens Racks offers no Ask AI functions and no Ask AI terminal. Do not propose them when features are added; the standing instruction in the development README is answered for this extension.
 - **Releases.** Commit and push to https://github.com/chenhunghan/lens-racks as work lands. Before the first change users would notice, raise the version (patch for fixes, minor for features) and add a CHANGELOG heading; publish through Lens (`/lens-extension-development-publish`).
 - **Screenshots** in the README come from a made-up demo cluster, never from a real one.
