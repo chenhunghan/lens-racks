@@ -2,6 +2,10 @@
 
 What changed in each version of this extension, newest first.
 
+## 0.1.2
+
+- The README opens with a short recording of Rack View at work.
+
 ## 0.1.1
 
 - "Report a problem" now opens the GitHub issues of the extension.

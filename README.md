@@ -2,7 +2,7 @@
 
 See your Kubernetes cluster as a live 3D datacenter, right inside Lens.
 
-![A cluster's racks in the hall, with fibres running to the network core and the internet gateway](assets/screenshots/overview.jpg)
+![Rack View in action: a cluster's racks, a drawer opening and a pod drawn out, the thermal view](https://raw.githubusercontent.com/chenhunghan/lens-racks/main/docs/demo.webp)
 
 ## Features
 
