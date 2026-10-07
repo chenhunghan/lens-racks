@@ -2,6 +2,11 @@
 
 What changed in each version of this extension, newest first.
 
+## 0.1.1
+
+- "Report a problem" now opens the GitHub issues of the extension.
+- The extension's page links to its source on GitHub, so the README's pictures show there too.
+
 ## 0.1.0
 
 - Rack View: any cluster as a live 3D datacenter, nodes as racks and pods as blades, opened from the navigator under each cluster or from the command palette.
