@@ -1,0 +1,8 @@
+dist/
+node_modules/
+tsconfig.tsbuildinfo
+.DS_Store
+# Local to this machine
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+.claude/settings.json

@@ -1,0 +1,72 @@
+{
+  "name": "lens-racks",
+  "version": "0.1.0",
+  "description": "Rack View: your Kubernetes cluster as a live 3D datacenter in Lens, with nodes as racks and pods as blades.",
+  "keywords": [
+    "lens-extension",
+    "kubernetes",
+    "3d",
+    "visualization",
+    "datacenter"
+  ],
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "files": [
+    "dist",
+    "assets",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "lensExtension": {
+    "icon": "assets/icon.svg",
+    "banner": "assets/banner.webp"
+  },
+  "scripts": {
+    "build": "lens-types-check && lens-package-build --entry-point ./src/index.ts",
+    "clean": "rimraf dist/"
+  },
+  "dependencies": {
+    "@k8slens/badge": "^3.0.0",
+    "@k8slens/cluster-contracts": "^2.4.0",
+    "@k8slens/command-palette-contracts": "^1.1.0",
+    "@k8slens/details-panel-components": "^1.0.2",
+    "@k8slens/details-panel-contracts": "^1.1.0",
+    "@k8slens/element-components": "^3.9.1",
+    "@k8slens/feature-core": "^7.5.2",
+    "@k8slens/icon": "^4.0.0",
+    "@k8slens/injectable": "^26.2.1",
+    "@k8slens/input-components": "^1.0.1",
+    "@k8slens/kubectl-contracts": "^1.0.0",
+    "@k8slens/kubernetes-contracts": "^2.0.2",
+    "@k8slens/main-view-contracts": "^1.3.2",
+    "@k8slens/navigation-contracts": "^1.0.0",
+    "@k8slens/navigator-components": "^1.0.3",
+    "@k8slens/navigator-contracts": "^2.2.0",
+    "@k8slens/prometheus-contracts": "^1.0.3",
+    "@k8slens/stylesheet-contracts": "^1.0.0",
+    "@k8slens/subscribable": "^1.1.3",
+    "@k8slens/tab-contracts": "^1.2.0",
+    "@k8slens/use-inject": "^1.0.2",
+    "mobx": "^6.15.0",
+    "mobx-react": "^9.2.1",
+    "react": "^19.2.0"
+  },
+  "devDependencies": {
+    "@k8slens/package-build": "^3.0.0",
+    "@k8slens/typescript": "^8.0.0",
+    "@types/react": "^19.2.0",
+    "@types/three": "^0.186.0",
+    "rimraf": "^4.4.1",
+    "three": "^0.186.1"
+  },
+  "license": "MIT",
+  "author": "Hung-Han (Henry) Chen",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenhunghan/lens-racks.git"
+  },
+  "homepage": "https://github.com/chenhunghan/lens-racks#readme",
+  "bugs": {
+    "email": "hchen@mirantis.com"
+  }
+}

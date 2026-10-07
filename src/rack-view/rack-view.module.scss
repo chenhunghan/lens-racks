@@ -1,0 +1,197 @@
+// Only what the $props of element-components do not cover: pinning HUD panels over
+// the canvas, and letting the pointer through to the scene between them.
+
+.root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  user-select: none;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  // The HUD speaks in Lens's own monospace, the face of its terminal and code.
+  font-family: var(--font-monospace, Monaco, Menlo, monospace);
+  letter-spacing: -0.01em;
+
+  // Inputs, buttons and Lens's components set their own family; the HUD keeps one voice.
+  :global(*) {
+    font-family: inherit !important;
+  }
+
+  > * {
+    pointer-events: auto;
+  }
+}
+
+.topLeft {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  max-width: min(520px, calc(100% - 24px));
+}
+
+.topRight {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.bottomLeft {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  max-width: min(640px, calc(100% - 400px));
+}
+
+.bottomRight {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 290px;
+  max-height: 34%;
+}
+
+.inspector {
+  position: absolute;
+  top: 62px; // clear of the toolbar
+  right: 8px;
+  width: 290px;
+  max-height: calc(66% - 100px);
+}
+
+.tooltip {
+  position: absolute;
+  pointer-events: none !important;
+  transform: translate(14px, 14px);
+  max-width: 360px;
+  z-index: 2;
+}
+
+.center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search {
+  width: 210px;
+}
+
+.bell {
+  position: relative;
+  display: inline-flex;
+}
+
+.unread {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primary);
+  pointer-events: none;
+}
+
+.namespaces {
+  max-height: 168px;
+  overflow-y: auto;
+}
+
+.eventList {
+  max-height: 180px;
+}
+
+.message {
+  max-width: 460px;
+}
+
+.fibre {
+  display: inline-block;
+  width: 16px;
+  height: 3px;
+  border-radius: 2px;
+  flex: none;
+}
+
+.heatScale {
+  display: inline-block;
+  width: 160px;
+  height: 8px;
+  border-radius: 4px;
+  // The inferno ramp of the thermal view.
+  background: linear-gradient(90deg, #000004 0%, #320a5e 18%, #781c6d 36%, #bc3754 54%, #ed6925 72%, #fbb61a 88%, #fcffa4 100%);
+}
+
+// One glass for every HUD panel: the scene shows through, blurred and darkened enough that
+// a bright fixture behind cannot wash the text out; no border, hairline dividers inside.
+.panel {
+  background-color: color-mix(in srgb, var(--grey80, #262b2f) 45%, transparent) !important;
+  backdrop-filter: blur(24px) saturate(1.4) brightness(0.72);
+  border: none !important;
+  zoom: 0.72;
+
+  :global(*) {
+    border-color: color-mix(in srgb, var(--grey20, #e5e5e5) 8%, transparent) !important;
+  }
+}
+
+// Takes the row's free width, so what follows it (the inspector's ✕) sits at the right edge.
+.grow {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.live {
+  animation: live-pulse 2s ease-in-out infinite;
+}
+
+.swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex: none;
+}
+
+.event {
+  animation: event-in 0.35s ease-out;
+}
+
+.kbd {
+  font-family: var(--font-monospace, monospace);
+  font-size: 10px;
+  padding: 0 4px;
+  border-radius: 3px;
+  border: 1px solid var(--grey60, #555);
+  opacity: 0.8;
+}
+
+@keyframes live-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--success, #48c78e) 60%, transparent); }
+  50% { box-shadow: 0 0 0 5px transparent; }
+}
+
+@keyframes event-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}

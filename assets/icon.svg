@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="14" fill="#3d90ce"/>
+  <!-- A server rack: frame, three blade enclosures with status lights. -->
+  <rect x="17" y="9" width="30" height="46" rx="3" fill="#ffffff"/>
+  <rect x="21" y="14" width="22" height="9" rx="1.5" fill="#1e2a36"/>
+  <rect x="21" y="27" width="22" height="9" rx="1.5" fill="#1e2a36"/>
+  <rect x="21" y="40" width="22" height="9" rx="1.5" fill="#1e2a36"/>
+  <circle cx="25" cy="18.5" r="2" fill="#48c78e"/>
+  <circle cx="25" cy="31.5" r="2" fill="#48c78e"/>
+  <circle cx="25" cy="44.5" r="2" fill="#ffbd2e"/>
+  <rect x="30" y="17.5" width="10" height="2" rx="1" fill="#7fb5e0"/>
+  <rect x="30" y="30.5" width="10" height="2" rx="1" fill="#7fb5e0"/>
+  <rect x="30" y="43.5" width="10" height="2" rx="1" fill="#7fb5e0"/>
+</svg>
