@@ -1347,10 +1347,13 @@ export class DatacenterScene {
   private updateRackFilterLook(rack: RackInstance) {
     const filtering = isFiltering(this.options);
     const hits = filtering ? [...rack.blades.values()].filter((blade) => blade.matched && blade.state !== "leaving").length : 0;
-    const material = rack.nameplateMesh.material as MeshStandardMaterial;
+    const material = rack.nameplateMesh.material;
 
-    material.emissiveIntensity = !filtering || hits > 0 ? 0.38 : 0.06;
-    material.color.setScalar(!filtering || hits > 0 ? 1 : 0.35);
+    // In the thermal view the plate wears the heat material; leaving the view updates it again.
+    if (material instanceof MeshStandardMaterial) {
+      material.emissiveIntensity = !filtering || hits > 0 ? 0.38 : 0.06;
+      material.color.setScalar(!filtering || hits > 0 ? 1 : 0.35);
+    }
 
     if (filtering && hits > 0) this.beacons.set(rack.beacon.index, ledOf(this.theme.primary, 2.6), LedMode.breathe, 0.8);
     else this.updateBeacon(rack);

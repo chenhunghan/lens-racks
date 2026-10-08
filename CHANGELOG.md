@@ -2,6 +2,11 @@
 
 What changed in each version of this extension, newest first.
 
+## 0.1.3
+
+- Thermal view: no more black box over the scene on some graphics cards. A blade's heat could compute to an invalid number there, and the glow spread it over a large part of the view.
+- Thermal view: searching or highlighting a namespace while it is on no longer stops the racks' beacons from updating.
+
 ## 0.1.2
 
 - The README opens with a short recording of Rack View at work.

@@ -78,7 +78,9 @@ const common = /* glsl */ `
 
   vec3 camera(float heat) {
     // The shape still reads: surfaces facing away a little darker, a faint sensor noise.
-    float facing = abs(dot(normalize(vNormal), normalize(vView)));
+    // A mesh without normals would normalize a zero vector: NaN, which the bloom spreads
+    // into black blocks. It is seen flat on instead.
+    float facing = dot(vNormal, vNormal) > 1e-8 ? abs(dot(normalize(vNormal), normalize(vView))) : 1.0;
     float organic = (smoothNoise(vWorld.xy * 3.0 + vWorld.zz * 2.0) - 0.5) * 0.035;
     float t = (heat + organic - rangeLo) / max(rangeHi - rangeLo, 0.05);
     float noise = (hash(gl_FragCoord.xy + floor(time * 30.0)) - 0.5) * 0.025;
@@ -117,7 +119,7 @@ const vertex = /* glsl */ `
     #endif
     vec4 world = model * vec4(position, 1.0);
     vWorld = world.xyz;
-    vNormal = normalize(mat3(model) * normal);
+    vNormal = mat3(model) * normal; // normalized per fragment, where a zero one is caught
     vView = cameraPosition - world.xyz;
     vInstanceHeat = 0.0;
     #ifdef USE_INSTANCING_COLOR
@@ -186,7 +188,9 @@ const instanceFragment = /* glsl */ `
     // the processors a third of the way in run hottest, the back stays warm, heat rises.
     float depth = clamp(-vLocal.z / 0.55, 0.0, 1.0);
     float height = clamp(vLocal.y / 0.19, 0.0, 1.0);
-    float processors = exp(-pow((depth - 0.38) / 0.16, 2.0));
+    // Squared by hand: pow() of a negative base is undefined in GLSL, NaN on many GPUs.
+    float off = (depth - 0.38) / 0.16;
+    float processors = exp(-off * off);
     float profile = 0.42 + 0.33 * smoothstep(0.0, 0.6, depth) + 0.35 * processors + 0.08 * height;
     float load = vInstanceHeat;
     float heat = 0.14 + load * 0.62 * profile + 0.05 * profile;
